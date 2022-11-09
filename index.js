@@ -1,28 +1,22 @@
+const express = require('express')
+const bodyparser = require('body-parser')
+const dotenv = require('dotenv')
+const mongoose = require('mongoose')
+const product_routes = require('./routes/product_routes')
+const user_routes = require('./routes/user_routes')
+const app = express()
+dotenv.config()
 
-const express=require("express");
-const app= express();
-const env=require('dotenv')
 
 
-// importing body parser
-const bodyParser= require("body-parser");
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
-env.config()
-// connecting to DB
-const mongoose= require("mongoose");
-mongoose.connect(process.env.DB_CONNECT,{useNewUrlParser:true},()=>{
-    console.log("connected to db");
-});
-//importing routes
-const router=require("./routers/routes");
-const { route } = require("./routers/routes");
-app.use("/user",router)
+mongoose.connect(process.env.DB,{useNewUrlParser : true},console.log('Connected to atlas'))
 
-app.use("/a",(req,res)=>{
-    res.send("hello world")
+app.use(bodyparser.json())
+app.use('/product',product_routes)
+app.use('/user',user_routes)
+
+app.get('/',(req,res)=>{
+    res.send("Hello World")
 })
-const PORT=4500;
-app.listen(PORT,(req,res)=>{
-    console.log("server on "+PORT)
-})
+
+app.listen(process.env.PORT || 4000,()=>{console.log("Listening on port 4000")})
