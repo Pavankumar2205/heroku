@@ -32,6 +32,10 @@ router.post('/register', async (req,res)=>{
         }
 })
 
+router.post('/a',(req,res)=>{
+    res.sendFile('C:\Users\pavan sairigapu\Desktop\ecommerce\registration.html')
+})
+
 router.post('/login', async (req,res)=>{
 
     if(req.body.email==process.env.admin_email && req.body.password==process.env.admin_password){
