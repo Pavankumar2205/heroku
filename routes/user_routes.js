@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const Schema = require('../models/u_schema')
 const {registervalidation,loginvalidation} = require('./validation')
 const e = require('express')
+const path=require('path')
 
 router.post('/register', async (req,res)=>{
      
@@ -33,7 +34,7 @@ router.post('/register', async (req,res)=>{
 })
 
 router.post('/a',(req,res)=>{
-    res.sendFile('C:\Users\pavan sairigapu\Desktop\ecommerce\registration.html')
+    res.sendFile('path.join(__dirname+)')
 })
 
 router.post('/login', async (req,res)=>{
