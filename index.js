@@ -18,5 +18,7 @@ app.use('/user',user_routes)
 app.get('/',(req,res)=>{
     res.send("Hello World")
 })
-
+app.get('/hell',(req,res)=>{
+    res.send("Hello World...")
+})
 app.listen(process.env.PORT || 4000,()=>{console.log("Listening on port 4000")})
